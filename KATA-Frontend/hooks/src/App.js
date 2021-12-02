@@ -7,23 +7,25 @@ import { getPeople } from './services/getPeople';
 function App() {
 
   const [ list, setList ] = useState([]);
+  const [ click, showList ] = useState(false)
 
   useEffect(() => {
-    let mounted = true;
-    getPeople()
+    if(click) {
+      getPeople()
       .then(items => {
         const { results } = items
 
-        if(mounted) {
-          setList(results)
-        }
+        setList(results)
       })
-    return () => mounted = false;
+    }
+    
+    return []
   })
 
   return (
     <div className="App">
       <h1>People Star Wars</h1>
+      <button type="button" onClick={() => showList(true)}>Show</button>
       <ul>
         {list.map(result => <li key={result.id}>{result.name}</li>)}
       </ul>
