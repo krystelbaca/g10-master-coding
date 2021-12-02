@@ -4,7 +4,8 @@ class Counter extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      counter: 5 // guardando el valor de mi estado
+      title: 'Contador!',
+      counter: 0
     }
 
     this.incrementCounter = this.incrementCounter.bind(this)
@@ -12,19 +13,24 @@ class Counter extends Component {
   }
 
   incrementCounter() {
-    console.log(this)
-    this.setState({ counter: this.state.counter + 1  })
+    this.setState({
+      ...this.state,
+      counter: this.state.counter + 1
+     })
   }
 
   decrementCounter() {
-    console.log(this)
     this.setState({ counter: this.state.counter - 1  })
   }
 
   render() { 
       return (
         <React.Fragment>
-          <h2>Contador</h2>
+          <h2>{
+            this.state.counter === 3
+            ? 'Tres!'
+            : this.state.title
+          }</h2>
           <div>
             <button
               type="button"
