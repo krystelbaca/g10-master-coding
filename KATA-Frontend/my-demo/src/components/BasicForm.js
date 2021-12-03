@@ -11,10 +11,9 @@ export default function BasicForm () {
   function handleChange (event) {
     // manejar el cambio de informacion recibida
     setData({
-      ...data,
-      [event.target.email] : event.target.value
+      email: event.target.name === 'email' ? event.target.value : data.email,
+      password: event.target.name === 'password' ? event.target.value : data.password
     })
-
   }
 
   function handleSubmit (event) {
